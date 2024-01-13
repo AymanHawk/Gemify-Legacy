@@ -1,0 +1,10 @@
+body{
+  margin: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Patrick Hand', sans-serif;
+  color: rbg(55,55,55);
+  background-color: #EAEDF0;
+}
