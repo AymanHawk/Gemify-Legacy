@@ -2,32 +2,34 @@ import { Button, Container } from '@mui/material';
 import { styled } from '@mui/system';
 import React from 'react';
 import spotify_logo from 'assets/spotify-logo.svg'
+import PurposeCard from '../../components/PurposeCard/PurposeCard';
 
 const StyledComponents = {
-
   Button: styled(Button)({
     backgroundColor: '#1DB954',
   }),
 
   Container: styled(Container)({
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    // justifyContent: 'center',
+    justifyContent: 'space-between',
+    // alignItems: 'center',
     height: '100vh',
     width: '100vw',
     backgroundColor: '#EAEDF0',
-    gap: '5rem',
-    // borderRadius:'10px',
-    // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    padding: '0 2rem', // Add padding for better spacing
   }),
 
   Img: styled('img')({
-    maxWidth: '100%', 
-    maxHeight: '100%', 
+    maxWidth: '100%',
+    maxHeight: '100%',
   }),
 
+  PurposeCardContainer: styled(Container)({
+    flex: 1, // Takes remaining space
+    marginLeft: '2rem', // Adjust margin as needed
+  }),
 };
+
 
 const handleClick = () => {
     const CLIENT_ID = "d1ca8443abd34bbe8d5b33168e16ed54"
@@ -52,8 +54,18 @@ const handleClick = () => {
 function LoginPage() {
   return (
     <StyledComponents.Container>
+      <div>
         <StyledComponents.Img src={spotify_logo} alt="" />
-      <StyledComponents.Button variant='contained' onClick={handleClick} >Connect Spotify</StyledComponents.Button>
+        <StyledComponents.Button 
+          variant='contained' 
+          onClick={handleClick}
+        >
+          Connect Spotify
+        </StyledComponents.Button>
+      </div>
+      <StyledComponents.PurposeCardContainer>
+      <PurposeCard />
+      </StyledComponents.PurposeCardContainer>
     </StyledComponents.Container>
   );
 }
