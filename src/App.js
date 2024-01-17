@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import './App.css'
 import LoginPage from "./views/LoginPage/LoginPage"
+import HomePage from "./views/HomePage/HomePage"
 import { useStateProvider } from "./utils/StateProvider"
 import { reducerCases } from "./utils/constants"
-import HomePage from "./views/HomePage/HomePage"
 
 
 function App() {
