@@ -24,7 +24,7 @@ function App() {
     <div className="App">
         <div>
             {token ?
-              <HomePage />
+              <HomePage token={token} />
               :
               <LoginPage/>
             }
