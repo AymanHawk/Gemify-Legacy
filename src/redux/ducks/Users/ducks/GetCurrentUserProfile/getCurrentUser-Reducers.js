@@ -7,16 +7,13 @@ const initialState = {
 };
 
 const fetchUserData = (state = initialState, action) => {
-    console.log(action.data)
     switch (action.type) {
         // case GET_USER_PROFILE:
-        //     console.log(state, '*** REDUCERS')
         //     return {
         //         ...state,
         //         data: action.data,
         //     }
         case LOAD_USER_PROFILE:
-            console.log(action, '*** REDUCERS')
             return {
                 ...state,
                 data: action.data,

@@ -1,4 +1,4 @@
-import getCurrentUserProfile from "./gemify_apis/getCurrentUserProfile";
+import getCurrentUserProfile from "./spotify-apis/getCurrentUserProfile";
 
 export const apiHub = {
     getCurrentUserProfile,
