@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectErrorStatus, selectLoadingStatus, selectUserProfile } from '../../redux/ducks/Users/ducks/GetCurrentUserProfile/getCurrentUser-Selectors';
 import { getProfile } from '../../redux/ducks/Users/ducks/GetCurrentUserProfile/getCurrentUser-Actions';
 import { useEffect } from 'react';
+import { topItemsData, topItemsIsLoading } from '../../redux/ducks/Users/ducks/GetTopItems/getTopItems-Selectors';
+import { getTopItems } from '../../redux/ducks/Users/ducks/GetTopItems/getTopItems-Actions';
 
 const StyledComponents = {
     Button: styled(Button)({
@@ -23,6 +25,7 @@ const StyledComponents = {
         backgroundColor: 'purple',
         flex: '1',
         alignSelf: 'flex-start', // Align to the end of the cross-axis (top in a column layout)
+        maxHeight: '50vh'
     }),
 
     Nav: styled(AppBar)({
@@ -34,19 +37,23 @@ const StyledComponents = {
 
 function HomePage({ token }) {
     const dispatch = useDispatch();
-    const errorStatus = useSelector(selectErrorStatus)
+    const errorMessage = useSelector(selectErrorStatus)
     const loadingStatus = useSelector(selectLoadingStatus)
 
     useEffect(() => {
         dispatch(getProfile(token))
+        dispatch(getTopItems(token))
     }, [token, dispatch])
+    const userProFileData = useSelector(selectUserProfile);
+    const DISPLAY_NAME = userProFileData?.display_name
 
-    const data = useSelector(selectUserProfile);
-    const DISPLAY_NAME = data?.display_name
+    const userTopItemsData = useSelector(topItemsData)
+    const userTopItemsLoading = useSelector(topItemsIsLoading)
+    const userTopItems = userTopItemsData?.items
 
     return (
         <StyledComponents.Container>
-            {console.log()}
+            {console.log(userTopItems)}
             <StyledComponents.Nav position="static">
                 <Toolbar variant="dense">
                     <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
@@ -59,9 +66,23 @@ function HomePage({ token }) {
             </StyledComponents.Nav>
             <StyledComponents.Card>
                 {/* add profile image here */}
-                Hey There {!errorStatus && `${DISPLAY_NAME || ''}`}
+                Hey There {!loadingStatus && `${DISPLAY_NAME || ''}`}
             </StyledComponents.Card>
-            hello
+            Your top artists are:
+            <br />
+            {!userTopItemsLoading ?
+                <div>
+                    <ul>
+                        {userTopItems.map((item) => (
+                            <li key={item.id}>
+                                <img src={item.images[0].url} alt="" height='100px'/>
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                : ''}
+
         </StyledComponents.Container>
     )
 }

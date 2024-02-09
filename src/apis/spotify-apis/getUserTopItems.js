@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function getCurrentUserProfile({token, type, time_range, limit, offset }){
+async function getUserTopItems({token, type, time_range, limit, offset }){
     try {
         const response = await axios.get(
             'https://api.spotify.com/v1/me/top/artists', {
@@ -15,4 +15,4 @@ async function getCurrentUserProfile({token, type, time_range, limit, offset }){
     }
 }
 
-export default getCurrentUserProfile;
+export default getUserTopItems;
