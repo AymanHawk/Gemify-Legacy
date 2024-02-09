@@ -53,7 +53,6 @@ function HomePage({ token }) {
 
     return (
         <StyledComponents.Container>
-            {console.log(userTopItems)}
             <StyledComponents.Nav position="static">
                 <Toolbar variant="dense">
                     <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
@@ -65,7 +64,6 @@ function HomePage({ token }) {
                 </Toolbar>
             </StyledComponents.Nav>
             <StyledComponents.Card>
-                {/* add profile image here */}
                 Hey There {!loadingStatus && `${DISPLAY_NAME || ''}`}
             </StyledComponents.Card>
             Your top artists are:
