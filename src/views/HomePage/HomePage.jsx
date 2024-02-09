@@ -1,42 +1,88 @@
 import { styled } from '@mui/system';
-import { Button, Container, } from '@mui/material';
-import getCurrentUserProfile from '../../apis/gemify_apis/getCurrentUserProfile';
+import { AppBar, Button, Card, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserProfile } from '../../redux/ducks/Users/ducks/GetCurrentUserProfile/getCurrentUser-Selectors';
+import { selectErrorStatus, selectLoadingStatus, selectUserProfile } from '../../redux/ducks/Users/ducks/GetCurrentUserProfile/getCurrentUser-Selectors';
 import { getProfile } from '../../redux/ducks/Users/ducks/GetCurrentUserProfile/getCurrentUser-Actions';
 import { useEffect } from 'react';
-
-
+import { topItemsData, topItemsIsLoading } from '../../redux/ducks/Users/ducks/GetTopItems/getTopItems-Selectors';
+import { getTopItems } from '../../redux/ducks/Users/ducks/GetTopItems/getTopItems-Actions';
 
 const StyledComponents = {
     Button: styled(Button)({
     }),
-  
-    Container: styled(Container)({
+
+    Container: styled('div')({
+        minHeight: '100vh', // Set the minimum height to 100% of the viewport height
+        minWidth: '100vw',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between', // Center content vertically
+        backgroundColor: 'green',
     }),
-  };
 
-function HomePage({token}){
+    Card: styled(Card)({
+        padding: '10px',
+        backgroundColor: 'purple',
+        flex: '1',
+        alignSelf: 'flex-start', // Align to the end of the cross-axis (top in a column layout)
+        maxHeight: '50vh'
+    }),
 
+    Nav: styled(AppBar)({
+        backgroundColor: 'black',
+        padding: '0px',
+        margin: '0px',
+    })
+};
+
+function HomePage({ token }) {
     const dispatch = useDispatch();
+    const errorMessage = useSelector(selectErrorStatus)
+    const loadingStatus = useSelector(selectLoadingStatus)
 
     useEffect(() => {
         dispatch(getProfile(token))
-    }, [])
+        dispatch(getTopItems(token))
+    }, [token, dispatch])
+    const userProFileData = useSelector(selectUserProfile);
+    const DISPLAY_NAME = userProFileData?.display_name
 
-    const data = useSelector(selectUserProfile);
-    const DISPLAY_NAME = data?.display_name
-    // console.log('it worked ???',data)
+    const userTopItemsData = useSelector(topItemsData)
+    const userTopItemsLoading = useSelector(topItemsIsLoading)
+    const userTopItems = userTopItemsData?.items
+
+    return (
+        <StyledComponents.Container>
+            <StyledComponents.Nav position="static">
+                <Toolbar variant="dense">
+                    <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                        {/* <MenuIcon /> */}
+                    </IconButton>
+                    <Typography variant="h6" color="inherit" component="div">
+                        Menu Bar
+                    </Typography>
+                </Toolbar>
+            </StyledComponents.Nav>
+            <StyledComponents.Card>
+                Hey There {!loadingStatus && `${DISPLAY_NAME || ''}`}
+            </StyledComponents.Card>
+            Your top artists are:
+            <br />
+            {!userTopItemsLoading && userTopItemsData?.items && (
+                <div>
+                    <ul>
+                        {userTopItemsData.items.map((item) => (
+                            <li key={item.id}>
+                                <img src={item.images[0].url} alt="" height="100px" />
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
 
-    return(
-        <div>
-            {console.log('it worked ???',data)}
-            <Container>
-                Hey There {`${DISPLAY_NAME}`}
-                {/* <Button onClick={() => dispatch(getProfile(token))}> LOG</Button> */}
-            </Container>
-        </div>
+        </StyledComponents.Container>
     )
 }
 

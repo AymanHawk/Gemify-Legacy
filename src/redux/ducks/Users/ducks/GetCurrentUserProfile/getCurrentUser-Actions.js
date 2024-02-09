@@ -9,15 +9,15 @@ export const getProfile = (token) => ({
 
 export const loadProfileData = (data) => ({
   type: LOAD_USER_PROFILE,
-  data
+  data,
 })
 
 export const getProfileError = (data) => ({
     type: GET_USER_PROFILE_ERROR,
-    data
+    data,
   });
 
 export const getProfileLoading = (data) => ({
     type: GET_USER_PROFILE_IS_LOADING,
-    data
+    data,
   });
