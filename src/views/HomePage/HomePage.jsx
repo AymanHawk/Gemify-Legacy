@@ -68,18 +68,19 @@ function HomePage({ token }) {
             </StyledComponents.Card>
             Your top artists are:
             <br />
-            {!userTopItemsLoading ?
+            {!userTopItemsLoading && userTopItemsData?.items && (
                 <div>
                     <ul>
-                        {userTopItems.map((item) => (
+                        {userTopItemsData.items.map((item) => (
                             <li key={item.id}>
-                                <img src={item.images[0].url} alt="" height='100px'/>
+                                <img src={item.images[0].url} alt="" height="100px" />
                                 {item.name}
                             </li>
                         ))}
                     </ul>
                 </div>
-                : ''}
+            )}
+
 
         </StyledComponents.Container>
     )
