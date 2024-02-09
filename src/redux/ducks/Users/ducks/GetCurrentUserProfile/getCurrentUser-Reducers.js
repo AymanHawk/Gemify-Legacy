@@ -21,12 +21,12 @@ const fetchUserData = (state = initialState, action) => {
         case GET_USER_PROFILE_ERROR:
             return {
                 ...state,
-                isLoading: action.data,
+                error: action.data,
             }
         case GET_USER_PROFILE_IS_LOADING:
             return {
                 ...state,
-                error: action.data,
+                isLoading: action.data,
             }
         default:
             return state;

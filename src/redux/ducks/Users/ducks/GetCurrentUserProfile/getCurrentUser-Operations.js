@@ -3,16 +3,15 @@ import { getProfile, getProfileError, getProfileLoading, loadProfileData } from 
 import { apiHub } from '../../../../../apis';
 
 function* workerGetProfile(action) {
-    yield put(getProfileError('k'));
+    yield put(getProfileError(''));
     yield put(getProfileLoading(true));
 
     try {
-            const { token } = action.data
-
-            const response = yield call(apiHub.getCurrentUserProfile, {
-                token
-            });
-            yield put(loadProfileData(response.data));
+        const { token } = action.data
+        const response = yield call(apiHub.getCurrentUserProfile, {
+            token
+        });
+        yield put(loadProfileData(response.data));
     } catch (ex) {
         let errorMessage = ex?.response?.data?.errorMessage || '';
         errorMessage = 'error';
