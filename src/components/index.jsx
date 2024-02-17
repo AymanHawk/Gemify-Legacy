@@ -1,3 +1,3 @@
-// import ErrorPage from "./ErrorPage/ErrorPage"
+import RangeSlider from "./Slider/Slider";
 
-// export { ErrorPage }
+export { RangeSlider }

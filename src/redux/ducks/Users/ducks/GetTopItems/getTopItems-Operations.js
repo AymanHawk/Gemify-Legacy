@@ -7,11 +7,14 @@ function* workerGetTopItems(action){
     yield put(getTopItemsIsLoading(true))
 
     try {
-        const { token } = action.data
+        const { token, type, time_range, limit, offset } = action.data
         const response = yield call(apiHub.getUserTopItems, {
-            token
+            token,
+            type,
+            time_range,
+            limit,
+            offset,
         })
-        console.log(response)
         yield put(loadTopItems(response.data))
     } catch (ex) {
         let errorMessage = ex?.response?.data?.errorMessage || '';
