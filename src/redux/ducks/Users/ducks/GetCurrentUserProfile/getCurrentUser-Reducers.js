@@ -1,4 +1,4 @@
-import { GET_USER_PROFILE, GET_USER_PROFILE_ERROR, GET_USER_PROFILE_IS_LOADING, LOAD_USER_PROFILE } from "./getCurrentUser-ActionTypes";
+import { CLEAR_USER_PROFILE_IS_LOADING, GET_USER_PROFILE_ERROR, GET_USER_PROFILE_IS_LOADING, LOAD_USER_PROFILE } from "./getCurrentUser-ActionTypes";
 
 const initialState = {
     data: {},
@@ -8,11 +8,6 @@ const initialState = {
 
 const fetchUserData = (state = initialState, action) => {
     switch (action.type) {
-        // case GET_USER_PROFILE:
-        //     return {
-        //         ...state,
-        //         data: action.data,
-        //     }
         case LOAD_USER_PROFILE:
             return {
                 ...state,
@@ -28,6 +23,8 @@ const fetchUserData = (state = initialState, action) => {
                 ...state,
                 isLoading: action.data,
             }
+        case CLEAR_USER_PROFILE_IS_LOADING: 
+            return initialState
         default:
             return state;
     }

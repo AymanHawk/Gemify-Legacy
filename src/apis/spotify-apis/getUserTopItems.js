@@ -3,7 +3,7 @@ import axios from "axios";
 async function getUserTopItems({token, type, time_range, limit, offset }){
     try {
         const response = await axios.get(
-            'https://api.spotify.com/v1/me/top/artists', {
+            `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

@@ -1,4 +1,4 @@
-import { GET_USER_PROFILE, GET_USER_PROFILE_ERROR, GET_USER_PROFILE_IS_LOADING,  LOAD_USER_PROFILE} from "./getCurrentUser-ActionTypes";
+import { GET_USER_PROFILE, GET_USER_PROFILE_ERROR, GET_USER_PROFILE_IS_LOADING,  LOAD_USER_PROFILE, CLEAR_USER_PROFILE_IS_LOADING} from "./getCurrentUser-ActionTypes";
 
 export const getProfile = (token) => ({
     type: GET_USER_PROFILE,
@@ -21,3 +21,7 @@ export const getProfileLoading = (data) => ({
     type: GET_USER_PROFILE_IS_LOADING,
     data,
   });
+
+export const clearProfile = () => ({
+    type: CLEAR_USER_PROFILE_IS_LOADING,
+})
