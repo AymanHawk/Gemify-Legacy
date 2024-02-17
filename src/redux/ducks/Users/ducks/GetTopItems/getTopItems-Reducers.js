@@ -1,4 +1,4 @@
-import { GET_USER_TOP_ITEMS, LOAD_USER_TOP_ITEMS, GET_USER_TOP_ITEMS_ERROR, GET_USER_TOP_ITEMS_IS_LOADING } from "./getTopItems-ActionTypes";
+import { CLEAR_USER_TOP_ITEMS, LOAD_USER_TOP_ITEMS, GET_USER_TOP_ITEMS_ERROR, GET_USER_TOP_ITEMS_IS_LOADING } from "./getTopItems-ActionTypes";
 
 const initialState = {
     data: {},
@@ -23,6 +23,8 @@ const fetchUserTopItems = (state = initialState, action) => {
                 ...state,
                 isLoading: action.data,
             }
+        case CLEAR_USER_TOP_ITEMS:
+            return initialState
         default:
             return state;
     }
