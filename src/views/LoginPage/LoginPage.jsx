@@ -30,8 +30,8 @@ const StyledComponents = {
 function LoginPage() {
 
   const handleClick = () => {
-    const CLIENT_ID = "d1ca8443abd34bbe8d5b33168e16ed54"
-    const REDIRECT_URI = "https://pre-production.d59h8svtpiyes.amplifyapp.com" // http://localhost:3000 https://pre-production.d59h8svtpiyes.amplifyapp.com
+    const CLIENT_ID = "enter client id here"
+    const REDIRECT_URI = "enter rediret uri here" // http://localhost:3000 https://pre-production.d59h8svtpiyes.amplifyapp.com
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const SCOPE = [
       'user-read-playback-position',
