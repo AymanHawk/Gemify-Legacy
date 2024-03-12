@@ -1,5 +1,5 @@
-const CLIENT_ID = "d1ca8443abd34bbe8d5b33168e16ed54"
-const REDIRECT_URI = "http://localhost:3000" // http://aymanhaque.com
+const CLIENT_ID = "enter client id here"
+const REDIRECT_URI = "enter redirect uri here" //.com
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = "token"
 
